@@ -1,0 +1,35 @@
+{
+  "name": "executable_presentation",
+  "version": "1.0.0",
+  "description": "Tool for generating remarkjs presentations from javascript files that include slides as comments and regular code and tests.",
+  "author": "Paul Johnson <paul@johnson.kiwi.nz>",
+  "main": "lib.js",
+  "bin": {"executable_presentation": "./cli.js"},
+  "scripts": {
+    "test": "mocha --harmony",
+    "test:watch": "mocha --harmony --watch"
+  },
+  "keywords": [
+    "remarkjs",
+    "executable_presentation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pj/executable_presentation"
+  },
+  "bugs": {
+    "url": "https://github.com/pj/executable_presentation/issues"
+  },
+  "analyze": true,
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "commander": "^2.8.1",
+    "esprima": "^2.6.0",
+    "sprintf": "^0.1.5",
+    "string-template": "^0.2.1"
+  }
+}
