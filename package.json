@@ -1,10 +1,12 @@
 {
   "name": "executable_presentation",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Tool for generating remarkjs presentations from javascript files that include slides as comments and regular code and tests.",
   "author": "Paul Johnson <paul@johnson.kiwi.nz>",
   "main": "lib.js",
-  "bin": {"executable_presentation": "./cli.js"},
+  "bin": {
+    "executable_presentation": "./cli.js"
+  },
   "scripts": {
     "test": "mocha --harmony",
     "test:watch": "mocha --harmony --watch"
@@ -27,9 +29,11 @@
     "mocha": "^2.3.3"
   },
   "dependencies": {
+    "chokidar": "^1.2.0",
     "commander": "^2.8.1",
     "esprima": "^2.6.0",
     "sprintf": "^0.1.5",
-    "string-template": "^0.2.1"
+    "string-template": "^0.2.1",
+    "watch": "^0.16.0"
   }
 }

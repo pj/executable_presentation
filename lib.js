@@ -1,4 +1,5 @@
 var esprima = require('esprima'),
+    fs = require('fs'),
     sprintfjs = require("sprintf"),
     sprintf = sprintfjs.sprintf;
 
@@ -49,4 +50,14 @@ function generate_slides(input) {
     return templated_slides;
 }
 
-module.exports = generate_slides;
+function output_slides(filename, output_filename) {
+    var code = fs.readFileSync(filename);
+    var output = generate_slides(code).join("\n---\n");
+    if (output_filename) {
+        fs.writeFileSync(output_filename, output);
+    } else {
+        console.log(output);
+    }
+}
+module.exports.output_slides = output_slides;
+module.exports.generate_slides = generate_slides;

@@ -1,25 +1,17 @@
 #!/usr/bin/env node --harmony
-/*
- * preprocessor.js
- * Copyright (C) 2015 pauljohnson <pauljohnson@Paul-Johnsons-MacBook-Pro.local>
- *
- * Distributed under terms of the MIT license.
- */
-
 var program = require('commander'),
     fs = require('fs'),
-    generate_slides = require('./lib.js');
+    chokidar = require('chokidar'),
+    lib = require('./lib.js'),
+    input_filename,
+    output_filename;
 
 program
+    .option("-w, --watch", "Watch for changes")
     .arguments('<filename> [output_filename]')
-    .action(function(filename, output_filename){
-        var code = fs.readFileSync(filename);
-        var output = generate_slides(code).join("\n---\n");
-        if (output_filename) {
-            fs.writeFileSync(output_filename, output);
-        } else {
-            console.log(output);
-        }
+    .action(function(input, output){
+        input_filename = input;
+        output_filename = output;
     });
 
 if (!process.argv.slice(2).length) {
@@ -28,3 +20,14 @@ if (!process.argv.slice(2).length) {
 }
 
 program.parse(process.argv);
+
+if (program.watch) {
+    var watcher = chokidar.watch(input_filename, { persistent: true });
+
+    watcher.on('change', function (path) {
+        lib.output_slides(input_filename, output_filename);
+        console.log("Generated:", input_filename, ">", output_filename);
+    });
+} else {
+    lib.output_slides(input_filename, output_filename);
+}

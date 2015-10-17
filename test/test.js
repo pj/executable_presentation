@@ -1,6 +1,6 @@
 var chai = require('chai'),
     fs = require('fs'),
-    generate_slides = require('../lib.js'),
+    lib = require('../lib.js'),
     fixture = require('../fixture/fixture.js');
 
 chai.should();
@@ -10,7 +10,7 @@ describe('generate slides', function(){
 
     before('process file', function(){
         var contents = fs.readFileSync('./fixture/fixture.js');
-        slides = generate_slides(contents);
+        slides = lib.generate_slides(contents);
     });
 
     it('create two slides', function(){
@@ -26,5 +26,37 @@ describe('generate slides', function(){
         var code = "```javascript\n" +
             fixture.includable_function.toString() + "\n```";
         slides[1].should.include(code);
+    });
+});
+
+describe('output file', function(){
+    var output_file = './fixture/fixture.md';
+
+    before('generate output', function(){
+        lib.output_slides('./fixture/fixture.js', output_file);
+    });
+
+    after('clean up output', function(){
+        fs.unlinkSync(output_file);
+    });
+
+    it('generate markdown file', function(){
+        fs.statSync(output_file).should.be.ok;
+    });
+});
+
+describe('watch for changes', function(){
+    var output_file = './fixture/watch.md';
+
+    before('create test file', function(){
+        lib.output_slides('./fixture/fixture.js', output_file);
+    });
+
+    after('clean up output', function(){
+        fs.unlinkSync(output_file);
+    });
+
+    it('generate markdown file', function(){
+        fs.statSync(output_file).should.be.ok;
     });
 });
