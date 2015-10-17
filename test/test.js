@@ -44,19 +44,3 @@ describe('output file', function(){
         fs.statSync(output_file).should.be.ok;
     });
 });
-
-describe('watch for changes', function(){
-    var output_file = './fixture/watch.md';
-
-    before('create test file', function(){
-        lib.output_slides('./fixture/fixture.js', output_file);
-    });
-
-    after('clean up output', function(){
-        fs.unlinkSync(output_file);
-    });
-
-    it('generate markdown file', function(){
-        fs.statSync(output_file).should.be.ok;
-    });
-});
