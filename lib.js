@@ -11,7 +11,8 @@ function extract_slide_comments(ast) {
         });
 
     var split_slide_comments = slide_comments.map(function (comment){
-        return comment["value"].split(/\n----*\n/g);
+        return comment["value"].split(/\n----*\n/g).map((x) =>
+                x.replace(/slide\n/, ""));
     });
 
     return split_slide_comments.reduce(
