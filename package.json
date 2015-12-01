@@ -1,6 +1,6 @@
 {
   "name": "executable_presentation",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tool for generating remarkjs presentations from javascript files that include slides as comments and regular code and tests.",
   "author": "Paul Johnson <paul@johnson.kiwi.nz>",
   "main": "lib.js",
