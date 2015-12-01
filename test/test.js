@@ -14,12 +14,15 @@ describe('generate slides', function(){
     });
 
     it('create two slides', function(){
-        slides.length.should.equal(2);
+        slides.length.should.equal(5);
     });
 
     it('ignore comments that aren\'t slides', function(){
         slides[0].should.include('This is a slide');
         slides[1].should.include('This is another slide');
+        slides[2].should.include('This is yet another slide');
+        slides[3].should.include('This is another slide in the same comment');
+        slides[4].should.include('This is the final slide in the same comment');
     });
 
     it('include code in a slide', function(){

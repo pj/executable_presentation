@@ -29,6 +29,22 @@ It has included code:
 These are some slide comments.
 */
 
+/*slide
+# This is yet another slide
+???
+These are some slide comments.
+
+----------------
+# This is another slide in the same comment.
+???
+These are the comments
+
+----------------
+# This is the final slide in the same comment.
+???
+These are the comments of the final slide
+*/
+
 var z = 0;
 
 for (var x = 0; x < 10; x++) {

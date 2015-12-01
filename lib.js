@@ -5,10 +5,19 @@ var esprima = require('esprima'),
 
 function extract_slide_comments(ast) {
     var comments = ast["comments"];
-    return comments.filter((comment) => {
+    var slide_comments = comments.filter((comment) => {
         return comment["type"] == "Block" &&
-            comment["value"].indexOf("slide") == 0;})
-        .map((comment) => comment["value"].slice(comment["value"].indexOf("\n")));
+            comment["value"].indexOf("slide") == 0;
+        });
+
+    var split_slide_comments = slide_comments.map(function (comment){
+        return comment["value"].split(/\n----*\n/g);
+    });
+
+    return split_slide_comments.reduce(
+            function(prev, current){
+                return prev.concat(current);
+            }, []);
 }
 
 function extract_code_from_loc(node, code) {
